@@ -1,0 +1,24 @@
+import { NextRequest } from 'next/server';
+import { gemmy } from '@/lib/gemmy';
+import { apiResponse, apiError } from '@/lib/apiResponse';
+
+export async function POST(req: NextRequest) {
+    try {
+        const body = await req.json();
+        const { prompt, aspectRatio } = body;
+
+        if (!prompt) {
+            return apiError('Prompt is required', 400);
+        }
+
+        const result = await gemmy.generateImage(prompt, { aspectRatio });
+
+        if (result.success) {
+            return apiResponse(result);
+        } else {
+            return apiError(result.msg || 'Image generation failed', 500);
+        }
+    } catch (error: any) {
+        return apiError(error.message, 500);
+    }
+}
