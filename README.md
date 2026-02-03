@@ -144,7 +144,7 @@ Buat file `.env.local` di root folder:
 MONGODB_URI=mongodb://localhost:27017/wawan-portfolio
 
 # Auth
-PASSWORD_ADMIN=password-rahasia-minimal-32-karakter
+ADMIN_PASSWORD=password-rahasia-minimal-32-karakter
 ```
 
 **Cara generate password:**
