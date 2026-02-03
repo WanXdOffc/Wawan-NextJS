@@ -125,7 +125,7 @@ Manage semua konten dari satu tempat:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/wawan-NextJS.git
+git clone https://github.com/WanXdOffc/Wawan-NextJS.git
 cd wawan-NextJS
 ```
 
@@ -144,7 +144,7 @@ Buat file `.env.local` di root folder:
 MONGODB_URI=mongodb://localhost:27017/wawan-portfolio
 
 # Auth
-NEXTAUTH_SECRET=password-rahasia-minimal-32-karakter
+PASSWORD_ADMIN=password-rahasia-minimal-32-karakter
 ```
 
 **Cara generate password:**
