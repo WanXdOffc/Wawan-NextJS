@@ -1,23 +1,22 @@
-# Gunakan image Node.js versi ringan
-FROM node:18-alpine
+FROM node:20-alpine
 
-# Set direktori kerja di dalam container
 WORKDIR /app
 
-# Salin file konfigurasi package (npm)
-COPY package.json package-lock.json* ./
+# Salin file konfigurasi dependensi
+COPY package.json package-lock.json* bun.lock* ./
 
-# Install dependensi
-RUN npm install
+# Install dependensi dengan bypass konflik peer-deps
+RUN npm install --legacy-peer-deps --force
 
-# Salin seluruh kode proyek ke dalam container
+# Salin seluruh kode proyek
 COPY . .
 
-# Build aplikasi Next.js untuk production
+# Matikan telemetry Next.js saat build
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Build aplikasi Next.js
 RUN npm run build
 
-# Buka port 3000
 EXPOSE 3000
 
-# Jalankan aplikasi Next.js
 CMD ["npm", "start"]
